@@ -15,10 +15,10 @@ import { RankingsResponse } from "../shared/responses/rankings.response";
     providedIn: 'root'
   })
 export class UserService {
-    private registerUrl = 'https://localhost:7185/api/user/register';
-    private loginUrl = 'https://localhost:7185/api/user/login';
-    private getUserDetailsUrl = 'https://localhost:7185/api/user/details';
-    private getRankinsUrl = 'https://localhost:7185/api/user/users';
+    private registerUrl = 'https://20.50.2.3:7185/api/user/register';
+    private loginUrl = 'https://20.50.2.3:7185/api/user/login';
+    private getUserDetailsUrl = 'https://20.50.2.3:7185/api/user/details';
+    private getRankinsUrl = 'https://20.50.2.3:7185/api/user/users';
 
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }
