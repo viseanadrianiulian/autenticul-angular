@@ -34,7 +34,7 @@ export function app(): express.Express {
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [{ provide: APP_BASE_HREF, useValue: '0.0.0.0' }],
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));
@@ -44,12 +44,12 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 10000;
 
   // Start up the Node server
   const server = app();
   server.listen(Number(port), '0.0.0.0', () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+    console.log(`Node Express server listening on http://0.0.0.0:${port}`);
   });
 }
 
