@@ -1,0 +1,27 @@
+<div class="event-form-container">
+    <h2>Add Event</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="eventToAdd.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="eventToAdd.description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="choice1">Choice 1:</label>
+        <input type="text" id="choice1" [(ngModel)]="eventToAdd.choice1" name="choice1" required>
+      </div>
+      <div class="form-group">
+        <label for="choice2">Choice 2:</label>
+        <input type="text" id="choice2" [(ngModel)]="eventToAdd.choice2" name="choice2" required>
+      </div>
+      <div class="form-group">
+        <label for="choice3">Choice 3:</label>
+        <input type="text" id="choice3" [(ngModel)]="eventToAdd.choice3" name="choice3" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  

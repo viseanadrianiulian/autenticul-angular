@@ -1,0 +1,7 @@
+<div class="user-details" *ngIf="user">
+    <h2>User Details</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Score:</strong> {{ user.score }}</p>
+    <button class="logoutButton" (click)="logout()">Logout</button>
+</div>
+  

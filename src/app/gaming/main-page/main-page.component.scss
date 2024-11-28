@@ -1,0 +1,26 @@
+.image-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .image-button {
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .image-button:hover {
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .image-buttons-container {
+      flex-direction: column;
+      justify-content: center; /* Asigură-te că imaginile sunt centrate vertical */
+    }
+  }
+  

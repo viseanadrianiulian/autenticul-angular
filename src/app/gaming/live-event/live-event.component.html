@@ -1,0 +1,54 @@
+<div *ngIf="event!=null" class="event-container">
+  <div *ngIf="event != null">
+    <h2>{{ event.name }}</h2>
+    <p>{{ event.description }}</p>
+    <div class="choices" *ngIf="!betPlaced">
+      <label>
+        <input type="radio" name="choice" [(ngModel)]="bet.choice" [value]="event.choice1">
+        {{ event.choice1 }}
+      </label>
+      <label>
+        <input type="radio" name="choice" [(ngModel)]="bet.choice" [value]="event.choice2">
+        {{ event.choice2 }}
+      </label>
+      <label>
+        <input type="radio" name="choice" [(ngModel)]="bet.choice" [value]="event.choice3">
+        {{ event.choice3 }}
+      </label>
+    </div>
+
+   
+
+    <button (click)="submitChoice()" [disabled]="!(!betPlaced && !isAdmin && event.isActive && event.betsActive)">Submit</button>
+
+    <button (click)="submitResult()" [disabled]="!isAdmin || !event.isActive">SaveResult</button>
+
+
+    <div *ngIf="!event?.isActive && !isAdmin">
+      <img src="assets/lost.png" alt="Image 1" class="image-result" *ngIf="!bet.isWon">
+      <img src="assets/won.png" alt="Image 2" class="image-result" *ngIf="bet.isWon">
+      <span>Pariul tau: {{bet.choice}}</span>
+      <span>---Rezultat: {{event.correctChoice}}</span>
+    </div>
+    <div *ngIf="betPlaced && event?.isActive && !isAdmin">
+      <span>Pariul tau: {{bet.choice}}</span>
+    </div>
+    
+    <div *ngIf="isAdmin && !event.isActive">
+      <span>Rezultatul este: {{event.correctChoice}}</span>
+    </div>
+
+    <button (click)="stopBets()" *ngIf="isAdmin && event.isActive && event.betsActive">StopBets</button>
+    <button (click)="closeEvent()" *ngIf="isAdmin && !event.isActive && !event.betsActive">CloseEvent</button>
+    
+TEST
+  </div>
+    
+</div>
+
+<div *ngIf="event == null">
+  <span>Nu exista evenimente live.</span>
+  <button (click)="addEvent()" *ngIf="isAdmin">Add-Event</button>
+</div>
+
+<span *ngIf="!event?.betsActive && event?.isActive" >Pariurile au fost inchise. </span>

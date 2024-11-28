@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: rgb(37, 35, 41);
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #05070a;
+    font-size:larger;
+  }
+  
+  .user-icon {
+    margin-right: 5px;
+  }
+  
