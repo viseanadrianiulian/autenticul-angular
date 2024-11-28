@@ -12,16 +12,14 @@ import { UserService } from '../user.service';
   styleUrl: './login-user.component.scss'
 })
 export class LoginUserComponent {
-  username: string = '';
-  password: string = '';
   userCredentials: IUser = {};
   loginSuccess: boolean = false;
 
   constructor(private router: Router, private userService: UserService){};
 
   onSubmit() {
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
+    console.log('Username:', this.userCredentials.username);
+    console.log('Password:', this.userCredentials.password);
     this.userService.login(this.userCredentials).subscribe({
       next: response => {
         console.log(response.success);
