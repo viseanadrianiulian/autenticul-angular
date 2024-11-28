@@ -45,10 +45,11 @@ export function app(): express.Express {
 
 function run(): void {
   const port = process.env['PORT'] || 10000;
+  const host = process.env['HOST'] || '0.0.0.0';
 
   // Start up the Node server
   const server = app();
-  server.listen(Number(port), '0.0.0.0', () => {
+  server.listen(10000, host, () => {
     console.log(`Node Express server listening on http://0.0.0.0:${port}`);
   });
 }
