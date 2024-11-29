@@ -13,12 +13,13 @@ import { Bet } from "./bet";
     providedIn: 'root'
   })
 export class GamingService {
-    private getLiveEventUrl = 'https://localhost:7185/api/event/liveevent';
-    private addEventUrl = 'https://localhost:7185/api/event/create';
-    private placeBetUrl = 'https://localhost:7185/api/bet/placebet';
-    private saveEventResultUrl = 'https://localhost:7185/api/event/saveeventresult';
-    private stopBetsUrl = 'https://localhost:7185/api/event/stopbets';
-    private closeEventUrl = 'https://localhost:7185/api/event/closeevent';
+    private baseUrl = 'https://autenticul.runasp.net/';
+    private getLiveEventUrl = this.baseUrl + 'api/event/liveevent';
+    private addEventUrl = this.baseUrl + 'api/event/create';
+    private placeBetUrl = this.baseUrl + 'api/bet/placebet';
+    private saveEventResultUrl = this.baseUrl + 'api/event/saveeventresult';
+    private stopBetsUrl = this.baseUrl + 'api/event/stopbets';
+    private closeEventUrl = this.baseUrl + 'api/event/closeevent';
     constructor(private http: HttpClient, private sharedService: SharedService){ }
 
 
