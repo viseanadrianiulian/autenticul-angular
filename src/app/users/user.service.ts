@@ -20,10 +20,10 @@ export class UserService {
     private getUserDetailsUrl = 'https://localhost:7185/api/user/details';
     private getRankinsUrl = 'https://localhost:7185/api/user/users'; */
 
-    private registerUrl = 'http://autenticul.runasp.net/api/user/register';
-    private loginUrl = 'http://autenticul.runasp.net/api/user/login';
-    private getUserDetailsUrl = 'http://autenticul.runasp.net/api/user/details';
-    private getRankinsUrl = 'http://autenticul.runasp.net/api/user/users';
+    private registerUrl = 'https://autenticul.runasp.net/api/user/register';
+    private loginUrl = 'https://autenticul.runasp.net/api/user/login';
+    private getUserDetailsUrl = 'https://autenticul.runasp.net/api/user/details';
+    private getRankinsUrl = 'https://autenticul.runasp.net/api/user/users';
 
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }
