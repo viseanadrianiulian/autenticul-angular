@@ -45,8 +45,15 @@ export class LiveEventComponent implements OnInit {
       next: response => {
         this.betPlaced = response.success;
         if(this.betPlaced === true) {
-          this.router.navigate(['../../gaming/live']);
+          
         }
+        else
+        {
+          console.log('EEE PE ELLLSEEEEEEE');
+          this.errorMessage = response.message;
+        }
+        console.log('EEEEE DUPA ELSEEEEEE')
+        window.location.reload();
       },
       error: err => this.errorMessage = err
     });

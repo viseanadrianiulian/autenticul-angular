@@ -24,9 +24,6 @@ export class SharedService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
-      console.log(err.error);
-      console.log(err.status);
-      console.log(err.type);
     }
     console.error(errorMessage);
     return throwError(() => errorMessage);
