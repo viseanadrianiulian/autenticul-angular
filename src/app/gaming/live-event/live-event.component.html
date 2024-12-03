@@ -41,7 +41,6 @@
     <button (click)="stopBets()" *ngIf="isAdmin && event.isActive && event.betsActive">StopBets</button>
     <button (click)="closeEvent()" *ngIf="isAdmin && !event.isActive && !event.betsActive">CloseEvent</button>
     
-TEST
   </div>
     <span *ngIf="errorMessage!=''">{{errorMessage}}</span>
 </div>
