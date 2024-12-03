@@ -14,7 +14,9 @@ import { UserService } from '../user.service';
 export class RegisterUserComponent {
   username: string = '';
   password: string = '';
-  userCredentials: IUser = {};
+  userCredentials: IUser = {
+    loginCounter: 0
+  };
   userCreated: boolean = false;
 
   constructor(private router: Router, private userService: UserService){};

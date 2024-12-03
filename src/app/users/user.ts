@@ -2,4 +2,5 @@ export interface IUser {
     username?: string;
     password?: string;
     score?: number;
+    loginCounter: number;
 }

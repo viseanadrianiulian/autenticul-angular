@@ -13,7 +13,7 @@ import { Bet } from "./bet";
     providedIn: 'root'
   })
 export class GamingService {
-    private baseUrl = 'https://autenticul.runasp.net/';
+    private baseUrl = 'https://api.autenticul.ro/';
     private getLiveEventUrl = this.baseUrl + 'api/event/liveevent';
     private addEventUrl = this.baseUrl + 'api/event/create';
     private placeBetUrl = this.baseUrl + 'api/bet/placebet';

@@ -12,7 +12,9 @@ import { UserService } from '../user.service';
   styleUrl: './login-user.component.scss'
 })
 export class LoginUserComponent {
-  userCredentials: IUser = {};
+  userCredentials: IUser = {
+    loginCounter: 0
+  };
   loginSuccess: boolean = false;
 
   constructor(private router: Router, private userService: UserService){};

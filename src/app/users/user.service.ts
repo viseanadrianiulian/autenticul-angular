@@ -15,15 +15,23 @@ import { RankingsResponse } from "../shared/responses/rankings.response";
     providedIn: 'root'
   })    
 export class UserService {
+
+    private baseUrl = 'https://api.autenticul.ro/';
 /*     private registerUrl = 'https://localhost:7185/api/user/register';
     private loginUrl = 'https://localhost:7185/api/user/login';
     private getUserDetailsUrl = 'https://localhost:7185/api/user/details';
     private getRankinsUrl = 'https://localhost:7185/api/user/users'; */
 
-    private registerUrl = 'https://autenticul.runasp.net/api/user/register';
-    private loginUrl = 'https://autenticul.runasp.net/api/user/login';
-    private getUserDetailsUrl = 'https://autenticul.runasp.net/api/user/details';
-    private getRankinsUrl = 'https://autenticul.runasp.net/api/user/users';
+    private registerUrl = this.baseUrl + 'api/user/register';
+    private loginUrl = this.baseUrl + 'api/user/login';
+    private getUserDetailsUrl = this.baseUrl + 'api/user/details';
+    private getRankinsUrl = this.baseUrl + 'api/user/users';
+/* 
+    
+    private registerUrl = 'http://api.autenticul.ro/api/user/register';
+    private loginUrl = 'http://api.autenticul.ro/api/user/login';
+    private getUserDetailsUrl = 'http://api.autenticul.ro/api/user/details';
+    private getRankinsUrl = 'http://api.autenticul.ro/api/user/users'; */
 
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }

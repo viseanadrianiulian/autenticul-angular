@@ -3,13 +3,15 @@ import { Observable } from "rxjs/internal/Observable";
 
 import { Injectable } from '@angular/core';
 import { throwError } from "rxjs/internal/observable/throwError";
+import { SortUsersPipe } from "./sort";
+import { IUser } from "../users/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  constructor() { }
+  constructor(private sortPipe: SortUsersPipe) { }
 
   handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
@@ -28,6 +30,10 @@ export class SharedService {
     }
     console.error(errorMessage);
     return throwError(() => errorMessage);
+  }
+
+  userSort(users: IUser[], criteria: string) {
+    return this.sortPipe.transform(users, criteria);
   }
 
 }
