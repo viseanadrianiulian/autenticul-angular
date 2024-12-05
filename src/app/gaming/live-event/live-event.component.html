@@ -22,6 +22,7 @@
     <button (click)="submitChoice()" [disabled]="!(!betPlaced && !isAdmin && event.isActive && event.betsActive)">Submit</button>
 
     <button (click)="submitResult()" [disabled]="!isAdmin || !event.isActive">SaveResult</button>
+    <button (click)="refreshPage()">Refresh</button>
 
 
     <div *ngIf="!event?.isActive && !isAdmin">
