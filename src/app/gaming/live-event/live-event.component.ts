@@ -115,6 +115,10 @@ export class LiveEventComponent implements OnInit {
   addEvent(): void{
     this.router.navigate(['../../gaming/add']);
   }
+
+  refreshPage(): void{
+    window.location.reload();
+  }
 }
 
 
