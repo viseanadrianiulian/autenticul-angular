@@ -33,6 +33,11 @@ export class LiveEventComponent implements OnInit {
         this.betPlaced = result.userBet!=null? true:false;
         console.log('BET PLACED: ', this.betPlaced);
         this.isAdmin = result.isAdmin;
+        var errMsg = localStorage.getItem('submitBetErrorMessage');
+        if(errMsg != null){
+          this.errorMessage = errMsg;
+          localStorage.removeItem('submitBetErrorMessage');
+        }
       },
       error: err => this.errorMessage = err
     });
@@ -44,9 +49,14 @@ export class LiveEventComponent implements OnInit {
     this.gamingService.placeBet(this.bet).subscribe({
       next: response => {
         this.betPlaced = response.success;
-        if(this.betPlaced === true) {
-          this.router.navigate(['../../gaming/live']);
+        if(response.success === true) {
+          
         }
+        else
+        {
+          localStorage.setItem('submitBetErrorMessage', response.message);
+        }
+        window.location.reload();
       },
       error: err => this.errorMessage = err
     });
@@ -58,9 +68,14 @@ export class LiveEventComponent implements OnInit {
     this.gamingService.saveEventResult(this.event!.id!, this.bet.choice!).subscribe({
       next: response => {
         this.betPlaced = response.success;
-        if(this.betPlaced === true) {
-          this.router.navigate(['../../gaming/live']);
+        if(response.success === true) {
+          
         }
+        else
+        {
+          this.errorMessage = response.message;
+        }
+        window.location.reload();
       },
       error: err => this.errorMessage = err
     });
@@ -72,9 +87,14 @@ export class LiveEventComponent implements OnInit {
     this.gamingService.stopBets(this.event!.id!).subscribe({
       next: response => {
         this.betPlaced = response.success;
-        if(this.betPlaced === true) {
-          this.router.navigate(['../../gaming/live']);
+        if(response.success === true) {
+          
         }
+        else
+        {
+          this.errorMessage = response.message;
+        }
+        window.location.reload();
       },
       error: err => this.errorMessage = err
     });

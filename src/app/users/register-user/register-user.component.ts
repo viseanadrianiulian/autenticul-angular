@@ -28,6 +28,7 @@ export class RegisterUserComponent {
       next: response => {
         console.log(response.success);
         this.userCreated = response.success;
+        this.router.navigate(['../../users/login']);
       }
     })
   }
