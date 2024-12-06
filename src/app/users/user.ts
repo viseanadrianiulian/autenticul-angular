@@ -1,6 +1,7 @@
-export interface IUser {
+export class IUser {
     username?: string;
+    email?: string;
     password?: string;
     score?: number;
-    loginCounter: number;
+    loginCounter?: number;
 }
