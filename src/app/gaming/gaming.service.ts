@@ -13,8 +13,8 @@ import { Bet } from "./bet";
     providedIn: 'root'
   })
 export class GamingService {
-    //private baseUrl = 'https://api.autenticul.ro/';
-    private baseUrl = 'https://localhost:7185/';
+    private baseUrl = 'https://api.autenticul.ro/';
+    //private baseUrl = 'https://localhost:7185/';
 
     private getLiveEventUrl = this.baseUrl + 'api/event/liveevent';
     private addEventUrl = this.baseUrl + 'api/event/create';
