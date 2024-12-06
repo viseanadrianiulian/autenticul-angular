@@ -16,8 +16,8 @@ import { RankingsResponse } from "../shared/responses/rankings.response";
   })    
 export class UserService {
 
-    private baseUrl = 'https://api.autenticul.ro/';
-    //private baseUrl = 'https://localhost:7185/';
+    //private baseUrl = 'https://api.autenticul.ro/';
+    private baseUrl = 'https://localhost:7185/';
 
     private registerUrl = this.baseUrl + 'api/user/register';
     private loginUrl = this.baseUrl + 'api/user/login';

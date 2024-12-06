@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { EventDto } from '../event';
 import { GamingService } from '../gaming.service';
 import { Bet } from '../bet';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { response } from 'express';
 
 @Component({
   selector: 'app-live-event',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, NgFor],
   templateUrl: './live-event.component.html',
   styleUrl: './live-event.component.scss'
 })
@@ -21,6 +21,8 @@ export class LiveEventComponent implements OnInit {
   errorMessage: string = '';
   betPlaced: boolean = false;
   isAdmin: boolean = false;
+  showPast: boolean = false;
+  pastEvents: EventDto[] = [];
 
   constructor(private http: HttpClient, private router: Router, private gamingService: GamingService) { }
 
@@ -28,6 +30,7 @@ export class LiveEventComponent implements OnInit {
     this.gamingService.getLiveEvent().subscribe({
       next: result => {
         this.event = result.liveEvent;
+        this.pastEvents = result.pastEvents;
         if(result.userBet)
           this.bet = result.userBet;
         this.betPlaced = result.userBet!=null? true:false;
@@ -118,6 +121,14 @@ export class LiveEventComponent implements OnInit {
 
   refreshPage(): void{
     window.location.reload();
+  }
+
+  toggleShowPast() : void{
+    this.showPast = !this.showPast;
+  }
+
+  toggleDetails(event: EventDto) {
+    event.showDetails = !event.showDetails;
   }
 }
 

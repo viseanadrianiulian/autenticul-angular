@@ -32,5 +32,9 @@ import { UserService } from '../../users/user.service';
       {
         this.router.navigate(['../../gaming/rankings']);
       }
+      if(selection === 'past')
+      {
+        this.router.navigate(['../../gaming/past']);
+      }
   }
 }
