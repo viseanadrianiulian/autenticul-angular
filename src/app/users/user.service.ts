@@ -29,7 +29,9 @@ export class UserService {
 
     register(newUser: IUser) : Observable<IResponse> {
         const formData = new FormData();
-        formData.append('NewUserString', JSON.stringify(newUser));
+        formData.append('Username', newUser.username!);
+        formData.append('Password', newUser.password!);
+        formData.append('Email', newUser.email!);
         return this.http.post<IResponse>(this.registerUrl, formData)
         .pipe(
             tap(data => console.log('user registered response:  ', JSON.stringify(data))),

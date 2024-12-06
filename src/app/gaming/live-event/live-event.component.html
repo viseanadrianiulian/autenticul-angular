@@ -22,6 +22,7 @@
     <button (click)="submitChoice()" [disabled]="!(!betPlaced && !isAdmin && event.isActive && event.betsActive)">Submit</button>
 
     <button (click)="submitResult()" [disabled]="!isAdmin || !event.isActive">SaveResult</button>
+    <button (click)="refreshPage()">Refresh</button>
 
 
     <div *ngIf="!event?.isActive && !isAdmin">
@@ -51,3 +52,21 @@
 </div>
 
 <span *ngIf="!event?.betsActive && event?.isActive" >Pariurile au fost inchise. </span>
+
+<button (click) = "toggleShowPast()">MyEvents</button>
+<div *ngIf="showPast">
+  <div *ngFor="let event of pastEvents" class="event-container">
+    <div class="event-header" (click)="toggleDetails(event)">
+      <h3>{{ event.name }}</h3>
+      <p>{{ event.description }}</p>
+    </div>
+    <div *ngIf="event.showDetails" class="event-details">
+      <ul>
+        <li>{{ event.choice1 }}</li>
+        <li>{{ event.choice2 }}</li>
+        <li>{{ event.choice3 }}</li>
+      </ul>
+      <p><strong>Correct Choice:</strong> {{ event.correctChoice }}</p>
+    </div>
+  </div>
+</div>

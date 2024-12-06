@@ -14,7 +14,7 @@ export class SortUsersPipe implements PipeTransform {
       if (sortBy === 'score') {
         return b.score! - a.score!;
       } else if (sortBy === 'loginCounter') {
-        return b.loginCounter - a.loginCounter;
+        return b.loginCounter! - a.loginCounter!;
       }
       return 0;
     });
