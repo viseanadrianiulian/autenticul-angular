@@ -1,0 +1,15 @@
+<div *ngFor="let event of pastEvents" class="event-container">
+    <div class="event-header" (click)="toggleDetails(event)">
+      <h3>{{ event.name }}</h3>
+      <p>{{ event.description }}</p>
+    </div>
+    <div *ngIf="event.showDetails" class="event-details">
+      <ul>
+        <li>{{ event.choice1 }}</li>
+        <li>{{ event.choice2 }}</li>
+        <li>{{ event.choice3 }}</li>
+      </ul>
+      <p><strong>Correct Choice:</strong> {{ event.correctChoice }}</p>
+    </div>
+  </div>
+  

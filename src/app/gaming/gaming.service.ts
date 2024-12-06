@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, tap } from "rxjs";
 import { IResponse } from "../shared/generic.response";
 import { SharedService } from "../shared/shared.service";
-import { LiveEventResponse } from "../shared/responses/event.response";
+import { AllPastEventsResponse, LiveEventResponse } from "../shared/responses/event.response";
 import { EventDto } from "./event";
 import { Bet } from "./bet";
 
@@ -22,7 +22,7 @@ export class GamingService {
     private saveEventResultUrl = this.baseUrl + 'api/event/saveeventresult';
     private stopBetsUrl = this.baseUrl + 'api/event/stopbets';
     private closeEventUrl = this.baseUrl + 'api/event/closeevent';
-
+    private getPastEventsUrl = this.baseUrl + 'api/event/getallpastevents'
     
     constructor(private http: HttpClient, private sharedService: SharedService){ }
 
@@ -43,6 +43,13 @@ export class GamingService {
             tap(data => console.log('GetLiveEvent response: ', JSON.stringify(data))),
             catchError(this.sharedService.handleError)
           );
+    }
+
+    getPastEvents(): Observable<AllPastEventsResponse> {
+      return this.http.get<AllPastEventsResponse>(this.getPastEventsUrl)
+        .pipe(
+          catchError(this.sharedService.handleError)
+        )
     }
     
     placeBet(newBet: Bet) : Observable<IResponse> {

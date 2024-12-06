@@ -8,5 +8,6 @@ export interface EventDto {
     correctChoice: string;
     isActive: boolean;
     betsActive: boolean;
+    showDetails: boolean;
   }
   

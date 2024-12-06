@@ -14,7 +14,10 @@ import { Router } from '@angular/router';
   styleUrl: './add-event.component.scss'
 })
 export class AddEventComponent {
-  eventToAdd: EventDto = { name: '', description: '', choice1: '', choice2: '', choice3: '', correctChoice: '', isActive: true, betsActive: true };
+  eventToAdd: EventDto = {
+    name: '', description: '', choice1: '', choice2: '', choice3: '', correctChoice: '', isActive: true, betsActive: true,
+    showDetails: false
+  };
   addSuccess: boolean = false;
   errorMessage: string = '';
 
