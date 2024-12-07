@@ -17,7 +17,13 @@ import { SharedService } from '../../shared/shared.service';
 })
 export class RankingsComponent implements OnInit {
 
-  highscoreUsers: IUser[] | undefined;
+  highscoreUsers: IUser[] = [];
+  sortDirection: { [key: string]: boolean } = { 
+    username: true, 
+    score: true, 
+    loginCounter: true, 
+    total: true 
+  };
   activityUsers: IUser[] | undefined;
   errorMessage: string = '';
   constructor(private http: HttpClient, private router: Router, private userService: UserService, private sharedService: SharedService ) {}
@@ -27,11 +33,27 @@ export class RankingsComponent implements OnInit {
       next: result => {
         if(result.users)
         {
-          this.highscoreUsers = this.sharedService.userSort( result.users, 'score');
-          this.activityUsers = this.sharedService.userSort( result.users, 'loginCounter');
+          this.highscoreUsers = result.users;
+          this.highscoreUsers.forEach(user => {
+            user.total = user.score! + user.loginCounter!;
+          });
         }
       },
       error: err => this.errorMessage = err
     });
+  }
+
+  sortData(column: keyof IUser) { 
+    this.sortDirection[column] = !this.sortDirection[column]; 
+    const direction = this.sortDirection[column] ? 1 : -1; 
+    this.highscoreUsers.sort((a, b) => { 
+      if (a[column]! < b[column]!) { 
+        return -1 * direction; 
+      } else if (a[column]! > b[column]!) { 
+        return 1 * direction; 
+      } else { 
+        return 0; 
+      } 
+    }); 
   }
 }

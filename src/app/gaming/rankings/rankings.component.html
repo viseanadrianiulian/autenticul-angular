@@ -1,18 +1,21 @@
 <div class="rankings">
-    <h2>Rankings</h2>
-    <ul>
-      <li *ngFor="let user of highscoreUsers">
-        <span>{{ user.username }}</span> - <span>{{ user.score }}</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="rankings">
-    <h2>Activity</h2>
-    <ul>
-      <li *ngFor="let user of activityUsers">
-        <span>{{ user.username }}</span> - <span>{{ user.loginCounter }}</span>
-      </li>
-    </ul>
-  </div>
-  
+  <h2>Rankings</h2>
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortData('username')">Username</th>
+        <th (click)="sortData('score')">Score</th>
+        <th (click)="sortData('loginCounter')">Activity</th>
+        <th (click)="sortData('total')">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of highscoreUsers">
+        <td>{{ user.username }}</td>
+        <td>{{ user.score }}</td>
+        <td>{{ user.loginCounter }}</td>
+        <td>{{ user.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
