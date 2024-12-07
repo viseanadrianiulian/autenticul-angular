@@ -4,4 +4,5 @@ export class IUser {
     password?: string;
     score?: number;
     loginCounter?: number;
+    total?: number;
 }
