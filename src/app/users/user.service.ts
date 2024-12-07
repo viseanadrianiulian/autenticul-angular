@@ -16,13 +16,10 @@ import { RankingsResponse } from "../shared/responses/rankings.response";
   })    
 export class UserService {
 
-    private baseUrl = 'https://api.autenticul.ro/';
-    //private baseUrl = 'https://localhost:7185/';
-
-    private registerUrl = this.baseUrl + 'api/user/register';
-    private loginUrl = this.baseUrl + 'api/user/login';
-    private getUserDetailsUrl = this.baseUrl + 'api/user/details';
-    private getRankinsUrl = this.baseUrl + 'api/user/users';
+    private registerUrl = this.sharedService.baseUrl + 'api/user/register';
+    private loginUrl = this.sharedService.baseUrl + 'api/user/login';
+    private getUserDetailsUrl = this.sharedService.baseUrl + 'api/user/details';
+    private getRankinsUrl = this.sharedService.baseUrl + 'api/user/users';
 
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }
