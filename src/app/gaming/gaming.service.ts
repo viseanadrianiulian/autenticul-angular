@@ -13,16 +13,14 @@ import { Bet } from "./bet";
     providedIn: 'root'
   })
 export class GamingService {
-    private baseUrl = 'https://api.autenticul.ro/';
-    //private baseUrl = 'https://localhost:7185/';
 
-    private getLiveEventUrl = this.baseUrl + 'api/event/liveevent';
-    private addEventUrl = this.baseUrl + 'api/event/create';
-    private placeBetUrl = this.baseUrl + 'api/bet/placebet';
-    private saveEventResultUrl = this.baseUrl + 'api/event/saveeventresult';
-    private stopBetsUrl = this.baseUrl + 'api/event/stopbets';
-    private closeEventUrl = this.baseUrl + 'api/event/closeevent';
-    private getPastEventsUrl = this.baseUrl + 'api/event/getallpastevents'
+    private getLiveEventUrl = this.sharedService.baseUrl + 'api/event/liveevent';
+    private addEventUrl = this.sharedService.baseUrl + 'api/event/create';
+    private placeBetUrl = this.sharedService.baseUrl + 'api/bet/placebet';
+    private saveEventResultUrl = this.sharedService.baseUrl + 'api/event/saveeventresult';
+    private stopBetsUrl = this.sharedService.baseUrl + 'api/event/stopbets';
+    private closeEventUrl = this.sharedService.baseUrl + 'api/event/closeevent';
+    private getPastEventsUrl = this.sharedService.baseUrl + 'api/event/getallpastevents'
     
     constructor(private http: HttpClient, private sharedService: SharedService){ }
 
