@@ -11,5 +11,9 @@ export const routes: Routes = [
     {
         path: 'gaming',
         loadChildren: () => import ('./gaming/gaming.routes').then(r => r.GAMING_ROUTES)
+    },
+    {
+        path: 'admin',
+        loadComponent: () => import('./admin/admin.component').then(a => a.AdminComponent)
     }
 ];

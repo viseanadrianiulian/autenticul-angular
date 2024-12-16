@@ -130,6 +130,10 @@ export class LiveEventComponent implements OnInit {
   toggleDetails(event: EventDto) {
     event.showDetails = !event.showDetails;
   }
+
+  navigateTo(path: string) { 
+    this.router.navigate([path]); 
+  }
 }
 
 

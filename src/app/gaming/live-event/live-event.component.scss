@@ -39,3 +39,20 @@
     cursor: not-allowed;
   }
   
+
+  .custom-bullet-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .custom-bullet-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .bullet-icon {
+    margin-right: 10px;
+    font-size: 1.5em;
+  }
+  

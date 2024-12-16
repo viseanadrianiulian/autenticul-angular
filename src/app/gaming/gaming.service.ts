@@ -6,6 +6,7 @@ import { SharedService } from "../shared/shared.service";
 import { AllPastEventsResponse, LiveEventResponse } from "../shared/responses/event.response";
 import { EventDto } from "./event";
 import { Bet } from "./bet";
+import { IActivePrizeResponse } from "../shared/responses/prize.response";
 
 
 
@@ -20,8 +21,9 @@ export class GamingService {
     private saveEventResultUrl = this.sharedService.baseUrl + 'api/event/saveeventresult';
     private stopBetsUrl = this.sharedService.baseUrl + 'api/event/stopbets';
     private closeEventUrl = this.sharedService.baseUrl + 'api/event/closeevent';
-    private getPastEventsUrl = this.sharedService.baseUrl + 'api/event/getallpastevents'
-    
+    private getPastEventsUrl = this.sharedService.baseUrl + 'api/event/getallpastevents';
+    private getActivePrizeUrl = this.sharedService.baseUrl + 'api/admin/activeprize';
+
     constructor(private http: HttpClient, private sharedService: SharedService){ }
 
 
@@ -92,5 +94,11 @@ export class GamingService {
       )
     }
 
-
+    getCurrentPrize(): Observable<IActivePrizeResponse> {
+      return this.http.get<IActivePrizeResponse>(this.getActivePrizeUrl)
+      .pipe(
+        catchError(this.sharedService.handleError)
+      )
+    }
+    
 }
