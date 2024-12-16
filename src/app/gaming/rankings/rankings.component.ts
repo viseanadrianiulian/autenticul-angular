@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../users/user.service';
 import { SortUsersPipe } from '../../shared/sort';
 import { SharedService } from '../../shared/shared.service';
+import { Prize } from '../../admin/prize';
 
 @Component({
   selector: 'app-rankings',
@@ -16,7 +17,7 @@ import { SharedService } from '../../shared/shared.service';
   styleUrl: './rankings.component.scss'
 })
 export class RankingsComponent implements OnInit {
-
+  totalPrize: Prize = new Prize(0, true, 'Dec 2024');
   highscoreUsers: IUser[] = [];
   sortDirection: { [key: string]: boolean } = { 
     username: true, 
@@ -26,7 +27,7 @@ export class RankingsComponent implements OnInit {
   };
   activityUsers: IUser[] | undefined;
   errorMessage: string = '';
-  constructor(private http: HttpClient, private router: Router, private userService: UserService, private sharedService: SharedService ) {}
+  constructor(private http: HttpClient, private router: Router, private userService: UserService, private sharedService: SharedService, private gamingService: GamingService ) {}
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe({
@@ -41,6 +42,17 @@ export class RankingsComponent implements OnInit {
       },
       error: err => this.errorMessage = err
     });
+
+    this.gamingService.getCurrentPrize().subscribe({
+      next: result => {
+        if(result.prize)
+        {
+          this.totalPrize.isActive = result.prize.isActive;
+          this.totalPrize.month = result.prize.month;
+          this.totalPrize.value = result.prize.value;
+        }
+      }
+    })
   }
 
   sortData(column: keyof IUser) { 
