@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+    {   path: '', 
+        loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) 
+    },
     { 
         path: 'users',
         loadChildren: () => import ('./users/users.routes').then(r => r.USER_ROUTES)
@@ -8,5 +11,9 @@ export const routes: Routes = [
     {
         path: 'gaming',
         loadChildren: () => import ('./gaming/gaming.routes').then(r => r.GAMING_ROUTES)
+    },
+    {
+        path: 'admin',
+        loadComponent: () => import('./admin/admin.component').then(a => a.AdminComponent)
     }
 ];
