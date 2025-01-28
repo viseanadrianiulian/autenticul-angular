@@ -10,8 +10,8 @@ import { IUser } from "../users/user";
   providedIn: 'root'
 })
 export class SharedService {
-  public baseUrl = 'https://api.autenticul.ro/';
-  //public baseUrl = 'https://localhost:7185/';
+  //public baseUrl = 'https://api.autenticul.ro/';
+  public baseUrl = 'https://localhost:7185/';
 
   constructor(private sortPipe: SortUsersPipe) { }
 

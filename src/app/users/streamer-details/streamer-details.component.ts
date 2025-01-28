@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Streamer } from '../streamer';
 import { UserService } from '../user.service';
-import { IUser } from '../user';
-import { UserResponse } from '../../shared/responses/user.response';
-import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { AuthService } from '../../shared/auth.service';
 
 @Component({
-  selector: 'app-user-details',
+  selector: 'app-streamer-details',
   standalone: true,
-  imports: [NgIf],
-  templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.scss'
+  imports: [],
+  templateUrl: './streamer-details.component.html',
+  styleUrl: './streamer-details.component.scss'
 })
-export class UserDetailsComponent implements OnInit {
-  user: IUser | undefined;
+export class StreamerDetailsComponent implements OnInit{
+  streamer: Streamer | undefined;
   errorMessage : string = '';
 
-  constructor(private userService: UserService, private authService: AuthService ,private router: Router) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.getUserDetails().subscribe({
+    this.userService.getStreamerDetails().subscribe({
       next: result => {
         if(result.success){
-          this.user = result.userDetails;
+          this.streamer = result.streamerDetails;
         }
         else
         {
@@ -39,7 +38,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   logout(): void{
-    this.userService.logout()
+    this.userService.logout();
     this.authService.setUsername('');
     this.router.navigate(['../../']);
   }

@@ -36,5 +36,9 @@ import { UserService } from '../../users/user.service';
       {
         this.router.navigate(['../../gaming/past']);
       }
+      if(selection === 'future')
+      {
+        this.router.navigate(['../../gaming/future']);
+      }
   }
 }
