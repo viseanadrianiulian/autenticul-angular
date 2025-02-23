@@ -15,5 +15,13 @@ export const routes: Routes = [
     {
         path: 'admin',
         loadChildren: () => import('./admin/admin.routes').then(a => a.ADMIN_ROUTES)
+    },
+    {
+        path: 'dezvoltare',
+        loadChildren: () => import('./dezvoltare/dezvoltare.routes').then(d => d.DEZVOLTARE_ROUTES)
+    },
+    {
+        path: 'blog',
+        loadChildren: () => import('./shared/blog/blog.routes').then(b => b.BLOG_ROUTES)
     }
 ];

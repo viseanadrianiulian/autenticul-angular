@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../users/user.service';
 
 @Component({
-  selector: 'app-main-page',
+  selector: 'gaming-main-page',
   standalone: true,
   imports: [],
   templateUrl: './main-page.component.html',
