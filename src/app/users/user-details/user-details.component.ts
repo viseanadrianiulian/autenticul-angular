@@ -4,6 +4,7 @@ import { IUser } from '../user';
 import { UserResponse } from '../../shared/responses/user.response';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-user-details',
@@ -16,7 +17,7 @@ export class UserDetailsComponent implements OnInit {
   user: IUser | undefined;
   errorMessage : string = '';
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private authService: AuthService ,private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getUserDetails().subscribe({
@@ -39,6 +40,7 @@ export class UserDetailsComponent implements OnInit {
 
   logout(): void{
     this.userService.logout()
+    this.authService.setUsername('');
     this.router.navigate(['../../']);
   }
 }

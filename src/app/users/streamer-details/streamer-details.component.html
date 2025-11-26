@@ -1,0 +1,30 @@
+<div class="profile-container">
+    <div class="profile-header">
+      <img src="{{streamer?.imageName}}" alt="Profile Image" class="profile-image">
+      <h1>{{streamer?.userName}}</h1>
+      <h2>{{streamer?.firstName}} {{streamer?.lastName}}</h2>
+    </div>
+    
+    <div class="profile-details">
+      <p class="description">{{streamer?.description}}</p>
+      <br>
+      <p><strong>Interests: </strong> {{streamer?.interests}}</p>
+      <p><strong>Usual Streaming Hours: </strong> {{streamer?.usualHours}}</p>
+      <p><strong>Email: </strong> <a href="mailto:{{streamer?.email}}">{{streamer?.email}}</a></p>
+      <p><strong>Category: </strong> {{streamer?.category}}</p>
+      <div class="social-links">
+        <p><strong>YouTube Channels:</strong></p>
+        <ul>
+          <li><a href="{{streamer?.youtubeChannel1Url}}" target="_blank">{{streamer?.youtubeChannel1}}</a></li>
+          <li><a href="{{streamer?.youtubeChannel2Url}}" target="_blank">{{streamer?.youtubeChannel2}}</a></li>
+        </ul>
+        <p><strong>Twitch: </strong> <a href="{{streamer?.twitchUrl}}" target="_blank">{{streamer?.twitchChannel}}</a></p>
+        <p><strong>Instagram: </strong> <a href="{{streamer?.instagramUrl}}" target="_blank">{{streamer?.instagramName}}</a></p>
+        <p><strong>Facebook: </strong> <a href="{{streamer?.facebookUrl}}" target="_blank">{{streamer?.facebookName}}</a></p>
+        <p><strong>TikTok: </strong> <a href="{{streamer?.tiktokUrl}}" target="_blank">{{streamer?.tiktokName}}</a></p>
+      </div>
+    </div>
+
+    <button class="logoutButton" (click)="logout()">Logout</button>
+  </div>
+  

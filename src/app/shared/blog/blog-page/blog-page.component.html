@@ -1,0 +1,12 @@
+<div class="blog-page">
+    <div class="article" *ngFor="let article of articles">
+      <div 
+        class="article-image"
+        [ngStyle]="{ 'background-image': 'url(' + article.imagePath + ')' }"
+        (click)="navigateTo(article.title!)"
+      ></div>
+      <h2 class="article-title">{{ article.title }}</h2>
+      <p class="article-description">{{ article.description }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,8 @@
+export interface Article{
+    id?: string;
+    title: string;
+    description: string;
+    content: string;
+    categoryId: string;
+    imagePath: string;
+}

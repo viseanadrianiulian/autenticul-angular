@@ -9,6 +9,7 @@ import { ILoginResponse } from "../shared/responses/login.response";
 import { UserResponse } from "../shared/responses/user.response";
 import { RankingsComponent } from "../gaming/rankings/rankings.component";
 import { RankingsResponse } from "../shared/responses/rankings.response";
+import { StreamerResponse } from "../shared/responses/streamer.response";
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class UserService {
     private loginUrl = this.sharedService.baseUrl + 'api/user/login';
     private getUserDetailsUrl = this.sharedService.baseUrl + 'api/user/details';
     private getRankinsUrl = this.sharedService.baseUrl + 'api/user/users';
+    private getStreamerDetailsUrl = this.sharedService.baseUrl + 'api/streamer/details';
 
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }
@@ -38,7 +40,8 @@ export class UserService {
 
     login(userCredentials: IUser) : Observable<ILoginResponse> {
         const formData = new FormData();
-        formData.append('UserLoginString', JSON.stringify(userCredentials));
+        formData.append('UserName', userCredentials.username!);
+        formData.append('Password', userCredentials.password!);
         return this.http.post<ILoginResponse>(this.loginUrl, formData)
         .pipe(
             tap( data => {
@@ -60,16 +63,24 @@ export class UserService {
     }
 
     private setSession(authResult: ILoginResponse) {
-        var currentDate = new Date();
-     //   const expiresAt = new Date(authResult.expiresIn);
         console.log('in setSession, jwttoken value: ' + authResult.jwtToken);
         localStorage.setItem('jwttoken', authResult.jwtToken);
         localStorage.setItem("expires_at", JSON.stringify(authResult.expiresIn) );
+        localStorage.setItem('username',authResult.userName);
+        if(authResult.isStreamer){
+            localStorage.setItem('isStreamer', 'true');
+        }
+        else
+        {
+            localStorage.setItem('isStreamer','false');
+        }
     } 
 
     logout() {
         localStorage.removeItem("jwttoken");
         localStorage.removeItem("expires_at");
+        localStorage.removeItem("username");
+        localStorage.removeItem("isStreamer");
     }
 
     isLoggedIn() {
@@ -87,6 +98,10 @@ export class UserService {
         return !this.isLoggedIn();
     }
 
+    isStreamer(){
+        return localStorage.getItem('isStreamer')==='true';
+    }
+
     getExpirationDate(): Date | null {
         const expiration = localStorage.getItem('expires_at');
         if (expiration) { 
@@ -96,14 +111,32 @@ export class UserService {
         return null; 
     }
 
+    getLoggedInUserName(): string {
+        var username = localStorage.getItem('username');
+        if(username != null)
+        {
+            return username;
+        }
+        return '';
+    }
 
     getUserDetails(): Observable<UserResponse> {
-        return this.http.get<UserResponse>(this.getUserDetailsUrl)
+            return this.http.get<UserResponse>(this.getUserDetailsUrl)
             .pipe(
                 tap(data => console.log('GetUserDetails response: ', JSON.stringify(data))),
                 catchError(this.sharedService.handleError)
             )
     }
+
+    getStreamerDetails(): Observable<StreamerResponse> {
+        const url = `${this.getStreamerDetailsUrl}?username=${this.getLoggedInUserName()}`;
+        return this.http.get<StreamerResponse>(url)
+            .pipe(
+                tap(data => console.log('GetStreamerDetails response: ', JSON.stringify(data))),
+                catchError(this.sharedService.handleError)
+            );
+    }
+    
     
 
     getUsers(): Observable<RankingsResponse> {

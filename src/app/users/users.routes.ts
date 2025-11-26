@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { RegisterUserComponent } from "./register-user/register-user.component";
 import { LoginUserComponent } from "./login-user/login-user.component";
 import { UserDetailsComponent } from "./user-details/user-details.component";
+import { StreamerDetailsComponent } from "./streamer-details/streamer-details.component";
 
 
 export const USER_ROUTES: Routes = [
@@ -16,5 +17,9 @@ export const USER_ROUTES: Routes = [
   {
       path: 'details',
       component: UserDetailsComponent
+  },
+  {
+      path: 'streamer-details',
+      component: StreamerDetailsComponent
   }
 ];

@@ -1,0 +1,50 @@
+.blog-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Asigură alinierea centrală */
+  gap: 20px;
+}
+
+.article {
+  flex: 1 1 calc(33.333% - 20px); /* Ajustează flex-basis pentru a se potrivi maxim 3 pe un rând */
+  max-width: calc(33.333% - 20px); /* Limitează lățimea maximă la 33.333% */
+  min-width: 280px; /* Setați o lățime minimă decentă */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Adaugă un fundal alb pentru a te asigura că articolele sunt vizibile */
+}
+
+.article-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.article-title {
+  font-size: 1.5em;
+  margin: 15px;
+  text-align: center;
+}
+
+.article-description {
+  margin: 15px;
+  font-size: 1em;
+  text-align: center;
+}
+
+/* Media queries pentru ecrane mai mici */
+@media (max-width: 900px) {
+  .article {
+    flex: 1 1 calc(50% - 20px); /* Ajustează flex-basis pentru a se potrivi maxim 2 pe un rând */
+    max-width: calc(50% - 20px); /* Limitează lățimea maximă la 50% */
+  }
+}
+
+@media (max-width: 600px) {
+  .article {
+    flex: 1 1 100%; /* Asigură că articolele ocupă întregul rând pe ecrane mici */
+    max-width: 100%; /* Limitează lățimea maximă la 100% */
+  }
+}

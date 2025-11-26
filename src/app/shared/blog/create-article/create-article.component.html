@@ -1,0 +1,49 @@
+<h2>Creare Articol Nou</h2>
+
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
+    <div class="form-group">
+      <label for="title">Titlu:</label>
+      <input type="text" id="title" required [(ngModel)]="article.title" name="title" #title="ngModel">
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error">
+        Titlu este necesar.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descriere:</label>
+      <textarea id="description" required [(ngModel)]="article.description" name="description" #description="ngModel"></textarea>
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error">
+        Descrierea este necesară.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imagePath">Path către poza:</label>
+      <input type="text" id="imagePath" required [(ngModel)]="article.imagePath" name="imagePath" #imagePath="ngModel">
+      <div *ngIf="imagePath.invalid && (imagePath.dirty || imagePath.touched)" class="error">
+        Path-ul către poza este necesar.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Conținut:</label>
+      <textarea id="content" required [(ngModel)]="article.content" name="content" #content="ngModel"></textarea>
+      <div *ngIf="content.invalid && (content.dirty || content.touched)" class="error">
+        Conținutul este necesar.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Categorie:</label>
+      <select id="category" required [(ngModel)]="article.categoryId" name="category" #category="ngModel">
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+      <div *ngIf="category.invalid && (category.dirty || category.touched)" class="error">
+        Categoria este necesară.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="articleForm.form.invalid">Adaugă Articol</button>
+  </form>
+</div>
