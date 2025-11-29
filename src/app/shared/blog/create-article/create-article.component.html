@@ -2,6 +2,7 @@
 
 <div class="container">
   <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
+    <!-- Titlu -->
     <div class="form-group">
       <label for="title">Titlu:</label>
       <input type="text" id="title" required [(ngModel)]="article.title" name="title" #title="ngModel">
@@ -10,6 +11,17 @@
       </div>
     </div>
 
+    <!-- Slug -->
+    <div class="form-group">
+      <label for="slug">Slug (URL-friendly):</label>
+      <input type="text" id="slug" required [(ngModel)]="article.slug" name="slug" #slug="ngModel">
+      <div *ngIf="slug.invalid && (slug.dirty || slug.touched)" class="error">
+        Slug-ul este necesar.
+      </div>
+      <small>Exemplu: "trimestrul-1-ghid"</small>
+    </div>
+
+    <!-- Descriere -->
     <div class="form-group">
       <label for="description">Descriere:</label>
       <textarea id="description" required [(ngModel)]="article.description" name="description" #description="ngModel"></textarea>
@@ -18,6 +30,14 @@
       </div>
     </div>
 
+    <!-- Rezumat -->
+    <div class="form-group">
+      <label for="summary">Rezumat (SEO):</label>
+      <textarea id="summary" [(ngModel)]="article.summary" name="summary"></textarea>
+      <small>Folosit ca fallback pentru meta description.</small>
+    </div>
+
+    <!-- Path către poza -->
     <div class="form-group">
       <label for="imagePath">Path către poza:</label>
       <input type="text" id="imagePath" required [(ngModel)]="article.imagePath" name="imagePath" #imagePath="ngModel">
@@ -26,6 +46,7 @@
       </div>
     </div>
 
+    <!-- Conținut -->
     <div class="form-group">
       <label for="content">Conținut:</label>
       <textarea id="content" required [(ngModel)]="article.content" name="content" #content="ngModel"></textarea>
@@ -34,6 +55,19 @@
       </div>
     </div>
 
+    <!-- Tags -->
+    <div class="form-group">
+      <label for="tags">Cuvinte cheie (SEO):</label>
+      <input type="text" id="tags" [(ngModel)]="tagsInput" name="tags">
+      <button type="button" (click)="addTag()">Adaugă Tag</button>
+      <div class="tags-list">
+        <span *ngFor="let tag of article.tags; let i = index">
+          {{ tag }} <button type="button" (click)="removeTag(i)">x</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Categorie -->
     <div class="form-group">
       <label for="category">Categorie:</label>
       <select id="category" required [(ngModel)]="article.categoryId" name="category" #category="ngModel">

@@ -29,8 +29,8 @@ export class BlogPageComponent implements OnInit {
     });
   }
 
-  navigateTo(title: string) {
-    const encodedTitle = encodeURIComponent(title);
+  navigateTo(slug: string) {
+    const encodedTitle = encodeURIComponent(slug);
     console.log('Navigating to:', `/mama-si-bebe/trimestrul1/article/${encodedTitle}`);
     this.router.navigate(['/dezvoltare/mama-si-bebe/trimestrul1/article', encodedTitle]);
   }

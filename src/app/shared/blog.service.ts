@@ -34,7 +34,7 @@ export class BlogService {
         )
       }
 
-      getArticleByTitle(articleTitle: string): Observable<ArticleResponse> {
+      getArticleBySlug(articleTitle: string): Observable<ArticleResponse> {
         return this.http.get<ArticleResponse>(this.getSingleArticleUrl + articleTitle)
         .pipe(
           catchError(this.sharedService.handleError)

@@ -3,7 +3,7 @@
       <div 
         class="article-image"
         [ngStyle]="{ 'background-image': 'url(' + article.imagePath + ')' }"
-        (click)="navigateTo(article.title!)"
+        (click)="navigateTo(article.slug)"
       ></div>
       <h2 class="article-title">{{ article.title }}</h2>
       <p class="article-description">{{ article.description }}</p>

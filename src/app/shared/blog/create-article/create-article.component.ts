@@ -10,40 +10,69 @@ import { Category } from '../category';
   standalone: true,
   imports: [FormsModule, NgIf, NgFor],
   templateUrl: './create-article.component.html',
-  styleUrl: './create-article.component.scss'
+  styleUrls: ['./create-article.component.scss']
 })
-export class CreateArticleComponent implements OnInit{
+export class CreateArticleComponent implements OnInit {
   article: Article = {
     title: '',
     description: '',
     imagePath: '',
     content: '',
-    categoryId: ''
+    categoryId: '',
+    slug: '',
+    summary: '',
+    tags: []
   };
-  categories: Category[] = [];
 
-  constructor(private blogService: BlogService){}
+  categories: Category[] = [];
+  tagsInput: string = '';
+
+  constructor(private blogService: BlogService) {}
 
   ngOnInit() {
-    this.blogService.getCategories().subscribe(
-      {
-        next: (data) => {
-          this.categories = data.categories;
-        },
+    this.blogService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data.categories;
+      },
       error: (error) => {
         console.error('Eroare la obținerea categoriilor:', error);
       }
     });
   }
 
+  addTag() {
+    if (this.tagsInput.trim()) {
+      this.article.tags?.push(this.tagsInput.trim());
+      this.tagsInput = '';
+    }
+  }
+
+  removeTag(index: number) {
+    this.article.tags?.splice(index, 1);
+  }
+
   onSubmit() {
-    this.blogService.createArticle(this.article).subscribe(
-      response => {
+    // Dacă slug-ul nu e completat, îl generăm automat din titlu
+    if (!this.article.slug) {
+      this.article.slug = this.generateSlug(this.article.title);
+    }
+
+    this.blogService.createArticle(this.article).subscribe({
+      next: (response) => {
         console.log('Articol adăugat:', response);
       },
-      error => {
+      error: (error) => {
         console.error('Eroare la adăugarea articolului:', error);
       }
-    );
+    });
+  }
+
+  private generateSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')   // elimină caractere speciale
+      .trim()
+      .replace(/\s+/g, '-')           // înlocuiește spațiile cu "-"
+      .replace(/-+/g, '-');           // elimină multiple "-"
   }
 }
