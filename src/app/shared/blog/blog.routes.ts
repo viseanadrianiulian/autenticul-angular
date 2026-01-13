@@ -4,5 +4,9 @@ export const BLOG_ROUTES = [
     {
         path: 'create-article',
         component: CreateArticleComponent
+    },
+    {
+        path: 'create-article/:id',
+        component: CreateArticleComponent
     }
 ]

@@ -15,4 +15,8 @@ export class AuthService {
   getUsername(): string {
     return this.usernameSubject.value;
   }
+
+  isAdmin(): boolean {
+    return this.usernameSubject.value == 'admin'
+  }
 }

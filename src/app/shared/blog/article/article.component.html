@@ -1,8 +1,13 @@
 <div class="article" *ngIf="article">
-    <div class="article-image" [ngStyle]="{ 'background-image': 'url(' + article.imagePath + ')' }"></div>
-    <h2 class="article-title">{{ article.title }}</h2>
-    <p class="article-content">
-      {{ article.content }}
-    </p>
-  </div>
-  
+  <div class="article-image" [ngStyle]="{ 'background-image': 'url(' + article.imagePath + ')' }"></div>
+  <h2 class="article-title">{{ article.title }}</h2>
+  <p class="article-content">
+    {{ article.content }}
+  </p>
+
+  <!-- Buton Edit -->
+<div class="article-actions" *ngIf="isAdmin">
+  <button (click)="editArticle()">Edit</button>
+</div>
+
+</div>

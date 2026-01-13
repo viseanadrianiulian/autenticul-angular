@@ -9,14 +9,11 @@
         <label for="password">Password:</label>
         <input type="password" id="password" [(ngModel)]="userCredentials.password" name="password" required>
       </div>
-      <button type="submit" [disabled]="loading">Login</button>
+      <button type="submit">Login</button>
       <div>
         <p>Nu ai cont?</p>
         <button class="loginButton" [routerLink]="'../../users/register'">Register</button>
       </div>
     </form>
-    <div *ngIf="loading" class="spinner-container">
-      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-    </div>
   </div>
   

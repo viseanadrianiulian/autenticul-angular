@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../blog.service';
 import { Article } from '../article';
 import { Category } from '../category';
@@ -14,6 +15,7 @@ import { Category } from '../category';
 })
 export class CreateArticleComponent implements OnInit {
   article: Article = {
+    id: undefined,
     title: '',
     description: '',
     imagePath: '',
@@ -26,8 +28,13 @@ export class CreateArticleComponent implements OnInit {
 
   categories: Category[] = [];
   tagsInput: string = '';
+  isEditMode: boolean = false;
 
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private blogService: BlogService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.blogService.getCategories().subscribe({
@@ -38,6 +45,12 @@ export class CreateArticleComponent implements OnInit {
         console.error('Eroare la obținerea categoriilor:', error);
       }
     });
+
+    const articleId = this.route.snapshot.paramMap.get('id');
+    if (articleId) {
+      this.isEditMode = true;
+      this.article.id = articleId;
+    }
   }
 
   addTag() {
@@ -52,27 +65,39 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit() {
-    // Dacă slug-ul nu e completat, îl generăm automat din titlu
     if (!this.article.slug) {
       this.article.slug = this.generateSlug(this.article.title);
     }
 
-    this.blogService.createArticle(this.article).subscribe({
-      next: (response) => {
-        console.log('Articol adăugat:', response);
-      },
-      error: (error) => {
-        console.error('Eroare la adăugarea articolului:', error);
-      }
-    });
+    if (this.isEditMode) {
+      this.blogService.updateArticle(this.article).subscribe({
+        next: (response) => {
+          console.log('Articol actualizat:', response);
+          this.router.navigate(['/article', this.article.slug]);
+        },
+        error: (error) => {
+          console.error('Eroare la actualizarea articolului:', error);
+        }
+      });
+    } else {
+      this.blogService.createArticle(this.article).subscribe({
+        next: (response) => {
+          console.log('Articol adăugat:', response);
+          this.router.navigate(['/article', this.article.slug]);
+        },
+        error: (error) => {
+          console.error('Eroare la adăugarea articolului:', error);
+        }
+      });
+    }
   }
 
   private generateSlug(title: string): string {
     return title
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')   // elimină caractere speciale
+      .replace(/[^a-z0-9\s-]/g, '')
       .trim()
-      .replace(/\s+/g, '-')           // înlocuiește spațiile cu "-"
-      .replace(/-+/g, '-');           // elimină multiple "-"
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
   }
 }

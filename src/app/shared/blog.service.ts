@@ -15,6 +15,7 @@ export class BlogService {
     private getCategoriesUrl = this.sharedService.baseUrl + 'api/blog/categories/all';
     private getSingleArticleUrl = this.sharedService.baseUrl + 'api/blog/articles/single/';
     private createArticleUrl = this.sharedService.baseUrl + 'api/blog/articles/create';
+    private updateArticleUrl = this.sharedService.baseUrl + 'api/blog/articles/update';
 
     constructor(private http: HttpClient, private sharedService: SharedService){ }
 
@@ -44,4 +45,12 @@ export class BlogService {
       createArticle(article: Article): Observable<IResponse> {
         return this.http.post<IResponse>(this.createArticleUrl, article);
       }
+
+      updateArticle(article: Article): Observable<IResponse> {
+        return this.http.post<IResponse>(this.updateArticleUrl, article);
+      }
+      
+
 }
+
+
